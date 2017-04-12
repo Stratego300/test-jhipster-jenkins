@@ -21,29 +21,29 @@ node {
             bat "./gradlew clean --no-daemon"
         }
 
-        stage('install tools') {
-            bat "./gradlew yarn_install -PnodeInstall --no-daemon"
-        }
-
-        stage('backend tests') {
-            try {
-                bat "./gradlew test -PnodeInstall --no-daemon"
-            } catch(err) {
-                throw err
-            } finally {
-                junit '**/build/**/TEST-*.xml'
-            }
-        }
-
-        stage('frontend tests') {
-            try {
-                bat "./gradlew yarn_test -PnodeInstall --no-daemon"
-            } catch(err) {
-                throw err
-            } finally {
-                junit '**/build/test-results/karma/TESTS-*.xml'
-            }
-        }
+//        stage('install tools') {
+//            bat "./gradlew yarn_install -PnodeInstall --no-daemon"
+//        }
+//
+//        stage('backend tests') {
+//            try {
+//                bat "./gradlew test -PnodeInstall --no-daemon"
+//            } catch(err) {
+//                throw err
+//            } finally {
+//                junit '**/build/**/TEST-*.xml'
+//            }
+//        }
+//
+//        stage('frontend tests') {
+//            try {
+//                bat "./gradlew yarn_test -PnodeInstall --no-daemon"
+//            } catch(err) {
+//                throw err
+//            } finally {
+//                junit '**/build/test-results/karma/TESTS-*.xml'
+//            }
+//        }
 
         stage('packaging') {
             bat "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
@@ -64,7 +64,7 @@ node {
             def uploadSpec = """{
               "files": [
                 {
-                  "pattern": "**/build/libs/*.war",
+                  "pattern": "build/libs/*.war",
                   "target": "libs-release-local/nc/opt/test-jhipster-jenkins/",
                   "props": "status=in-int"
                 }
