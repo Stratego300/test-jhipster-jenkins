@@ -67,7 +67,7 @@ node {
             def uploadSpec = """ {
               "files": [
                 {
-                  "pattern": "build/libs/tjj-0.0.1-SNAPSHOT.war",
+                  "pattern": "build\\libs\\tjj-0.0.1-SNAPSHOT.war",
                   "target": "libs-release-local/",
                   "props": "status=in-int"
                 }
