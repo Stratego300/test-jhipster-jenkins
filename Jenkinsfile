@@ -61,7 +61,7 @@ node {
 
             //rtGradle.deployer.addProperty("status", "in-int")
 
-            def uploadSpec = """{
+            def uploadSpec = """ {
               "files": [
                 {
                   "pattern": "C:/Program Files (x86)/Jenkins/workspace/test-jhipster-jenkins/buildbuild/libs/*.war",
