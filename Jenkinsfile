@@ -7,6 +7,7 @@ node {
 
     //gitlabCommitStatus('build') {
         stage('check') {
+            sh "echo $PATH"
             sh "java -version"
             sh "gradle -version"
             sh "./gradlew -version"
