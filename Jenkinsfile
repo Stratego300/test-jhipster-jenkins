@@ -44,7 +44,7 @@ node {
 //                junit '**/build/test-results/karma/TESTS-*.xml'
 //            }
 //        }
-
+//
 //        stage('packaging') {
 //            bat "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
 //            archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
