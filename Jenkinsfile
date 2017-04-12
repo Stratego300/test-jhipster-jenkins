@@ -6,7 +6,7 @@ node {
     }
 
     //gitlabCommitStatus('build') {
-        stage('check') {
+        stage('check version') {
             bat "echo $PATH"
             bat "java -version"
             bat "mvn -version"
@@ -48,6 +48,32 @@ node {
         stage('packaging') {
             bat "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
             archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
+        }
+
+        stage('deploy') {
+            def server = Artifactory.server 'ARTIFACTORY-CLOUD'
+
+            //def rtGradle = Artifactory.newGradleBuild()
+
+            //rtGradle.deployer server: server, repo: 'libs-release-local'
+
+            //rtGradle.deployer.artifactDeploymentPatterns.addInclude("*.war").addInclude("*.jar")
+
+            //rtGradle.deployer.addProperty("status", "in-int")
+
+            def uploadSpec = """{
+              "files": [
+                {
+                  "pattern": "**/build/libs/*.war",
+                  "target": "libs-release-local/nc/opt/test-jhipster-jenkins/",
+                  "props": "status=in-int"
+                }
+             ]
+            }"""
+            def buildInfo = server.upload(uploadSpec)
+
+            server.publishBuildInfo(buildInfo)
+
         }
 
         /*stage('quality analysis') {
