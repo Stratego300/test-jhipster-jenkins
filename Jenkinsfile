@@ -62,6 +62,7 @@ node {
             //rtGradle.deployer.addProperty("status", "in-int")
 
             bat "pwd"
+            bat "ls -lrt build/libs/"
 
             def uploadSpec = """ {
               "files": [
