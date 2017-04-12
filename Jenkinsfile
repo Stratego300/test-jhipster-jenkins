@@ -64,7 +64,7 @@ node {
             def uploadSpec = """{
               "files": [
                 {
-                  "pattern": "build/libs/*.war",
+                  "pattern": "C:/Program Files (x86)/Jenkins/workspace/test-jhipster-jenkins/buildbuild/libs/*.war",
                   "target": "libs-release-local/nc/opt/test-jhipster-jenkins/",
                   "props": "status=in-int"
                 }
