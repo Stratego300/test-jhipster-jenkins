@@ -16,11 +16,11 @@ node {
             bat "yarn --version"
         }
 
-        stage('clean') {
-            bat "chmod +x gradlew"
-            bat "./gradlew clean --no-daemon"
-        }
-
+//        stage('clean') {
+//            bat "chmod +x gradlew"
+//            bat "./gradlew clean --no-daemon"
+//        }
+//
 //        stage('install tools') {
 //            bat "./gradlew yarn_install -PnodeInstall --no-daemon"
 //        }
@@ -44,7 +44,7 @@ node {
 //                junit '**/build/test-results/karma/TESTS-*.xml'
 //            }
 //        }
-
+//
 //        stage('packaging') {
 //            bat "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
 //            archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
@@ -64,7 +64,7 @@ node {
             def uploadSpec = """ {
               "files": [
                 {
-                  "pattern": "C:/Program Files (x86)/Jenkins/workspace/test-jhipster-jenkins/buildbuild/libs/*.war",
+                  "pattern": "C:/Program Files (x86)/Jenkins/workspace/test-jhipster-jenkins/build/libs/*.war",
                   "target": "libs-release-local/nc/opt/test-jhipster-jenkins/",
                   "props": "status=in-int"
                 }
