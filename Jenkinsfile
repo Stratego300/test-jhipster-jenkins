@@ -17,17 +17,17 @@ node {
         }
 
         stage('clean') {
-            sh "chmod +x gradlew"
-            sh "./gradlew clean --no-daemon"
+            bat "chmod +x gradlew"
+            bat "./gradlew clean --no-daemon"
         }
 
         stage('install tools') {
-            sh "./gradlew yarn_install -PnodeInstall --no-daemon"
+            bat "./gradlew yarn_install -PnodeInstall --no-daemon"
         }
 
         stage('backend tests') {
             try {
-                sh "./gradlew test -PnodeInstall --no-daemon"
+                bat "./gradlew test -PnodeInstall --no-daemon"
             } catch(err) {
                 throw err
             } finally {
@@ -37,7 +37,7 @@ node {
 
         stage('frontend tests') {
             try {
-                sh "./gradlew yarn_test -PnodeInstall --no-daemon"
+                bat "./gradlew yarn_test -PnodeInstall --no-daemon"
             } catch(err) {
                 throw err
             } finally {
@@ -46,13 +46,13 @@ node {
         }
 
         stage('packaging') {
-            sh "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
+            bat "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
             archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
         }
 
         /*stage('quality analysis') {
             withSonarQubeEnv('Sonar') {
-                sh "./gradlew sonarqube --no-daemon"
+                bat "./gradlew sonarqube --no-daemon"
             }
         }*/
     //}
