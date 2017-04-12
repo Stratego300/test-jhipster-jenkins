@@ -45,10 +45,10 @@ node {
 //            }
 //        }
 
-//        stage('packaging') {
-//            bat "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
-//            archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
-//        }
+        stage('packaging') {
+            bat "./gradlew bootRepackage -x test -Pprod -PnodeInstall --no-daemon"
+            archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
+        }
 
         stage('deploy') {
             def server = Artifactory.server 'ARTIFACTORY-CLOUD'
