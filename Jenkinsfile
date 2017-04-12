@@ -61,10 +61,12 @@ node {
 
             //rtGradle.deployer.addProperty("status", "in-int")
 
+            bat "pwd"
+
             def uploadSpec = """ {
               "files": [
                 {
-                  "pattern": "C:/Program Files (x86)/Jenkins/workspace/test-jhipster-jenkins/build/libs/tjj-0.0.1-SNAPSHOT.war",
+                  "pattern": "/C/Program Files (x86)/Jenkins/workspace/test-jhipster-jenkins/build/libs/tjj-0.0.1-SNAPSHOT.war",
                   "target": "libs-release-local/nc/opt/test-jhipster-jenkins/",
                   "props": "status=in-int"
                 }
