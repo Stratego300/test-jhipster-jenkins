@@ -7,12 +7,12 @@ node {
 
     //gitlabCommitStatus('build') {
         stage('check') {
-            bash "java -version"
-            bash "gradle -version"
-            bash "./gradlew -version"
-            bash "node --version"
-            //bash "mvn --version"
-            bash "yarn --version"
+            sh "java -version"
+            sh "gradle -version"
+            sh "./gradlew -version"
+            sh "node --version"
+            //sh "mvn --version"
+            sh "yarn --version"
         }
 
         stage('clean') {
